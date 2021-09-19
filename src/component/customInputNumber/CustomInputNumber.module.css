@@ -1,0 +1,50 @@
+.inputGroup {
+    display: flex
+}
+
+.inputGroup .title {
+    height: 50px;
+    font-size: 12px;
+    color: black;
+    text-align: center;
+    margin: 8px;
+    display: flex;
+    align-items: center;  
+}
+
+.inputGroup .inputNumber {
+    font-size: 12px;
+    color: black;
+    border: 1px solid gray;
+}
+
+.utilFormat {
+    flex-direction: column;
+    width: 48px;
+    height: 48px;
+    line-height: 48px;
+    color: blue;
+    border: 1px solid blue;
+    text-align: center;
+    cursor: pointer;
+    margin: 8px;
+    font-size: 48px;
+    border-radius: 5px;
+    padding: 0px;
+}
+
+.inputGroup .disable {
+    border: 1px solid gray;
+    color: gray;
+}
+
+
+input[type="number"] {
+    -webkit-appearance: textfield;
+       -moz-appearance: textfield;
+            appearance: textfield;
+  }
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+}
