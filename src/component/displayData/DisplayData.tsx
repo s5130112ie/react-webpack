@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/store";
+import { RootState } from "./../../redux/store";
 
 export const DisplayData = () => {    
     const unSetNumber: number = useSelector((state: RootState) => state.unSetNumber);

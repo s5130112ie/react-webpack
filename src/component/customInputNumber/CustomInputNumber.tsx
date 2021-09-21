@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changeRoomMember } from "../../../redux/roomsSlice";
-import { AppDispatch, RootState } from "../../../redux/store";
+import { changeRoomMember } from "./../../redux/roomsSlice";
+import { AppDispatch, RootState } from "./../../redux/store";
 import styles from "./CustomInputNumber.module.css";
 
 interface props {
@@ -9,7 +9,10 @@ interface props {
 }
 
 export const CustomInputNumber = (props: props) => {
-    const max: number = 4;
+    const unSetNumber: number = useSelector((state: RootState) => state.unSetNumber);
+    const result: number[] = useSelector((state: RootState) => state.result);
+
+    const max: number = 4 > unSetNumber + result[props.step] ? unSetNumber + result[props.step] : 4;
     const min: number = 1;
     const rules = new RegExp('[0-9]');
     const speed: number = 200; // 連續點擊的加減速度
@@ -17,7 +20,6 @@ export const CustomInputNumber = (props: props) => {
     let refCount = useRef(1);
     const dispatch = useDispatch<AppDispatch>();
     const [inputNumber, setInputNumber] = useState(min);
-    const isDisabled: boolean = useSelector((state: RootState) => state.isDisabled);
 
     const setNumber = (newValue) => {
         if (newValue < min || !rules.test(newValue)) {
@@ -67,9 +69,8 @@ export const CustomInputNumber = (props: props) => {
                 onChange={(e) => setNumber(Number(e.target.value))}
             />
             <div
-                className={`${styles.utilFormat} ${(inputNumber === max || isDisabled) && styles.disable}`}
+                className={`${styles.utilFormat} ${(inputNumber === max) && styles.disable}`}
                 onMouseDown={() => {
-                    if (isDisabled) { return; }
                     let i = 0;
                     refInterval.current = setInterval(() => {
                         setNumber(inputNumber + 1 + i);
